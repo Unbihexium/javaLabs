@@ -122,6 +122,25 @@ public class Lab1 {
         array[a] = y;
     }
 
+    public static void matrix25(int[][] matrix){
+        int maxSum = 0, maxNum = 0;
+        for (int i = 0; i < matrix.length; ++i){
+            int sum = 0;
+            for (int j = 0; j < matrix[i].length; ++j){
+                sum +=matrix[i][j];
+            }
+            if (i == 0){
+                maxSum = sum;
+                maxNum = i;
+            }
+            if (sum > maxSum){
+                maxSum = sum;
+                maxNum = i;
+            }
+        }
+        System.out.println("MaxSum:" + Integer.toString(maxSum) + ", MaxNum:" + Integer.toString(maxNum));
+    }
+
     public static void string37(String s, String s1, String s2) {
         int index = s.lastIndexOf(s1);
         if (index == -1)
