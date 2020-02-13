@@ -1,5 +1,7 @@
 package com.company.lab2;
 
+import java.util.Arrays;
+
 public class Product {
 
     private int id;
@@ -19,6 +21,16 @@ public class Product {
         this.cost = cost;
         this.shelfLife = shelfLife;
         this.count = count;
+    }
+
+    public Product(Product product){
+        this.id = product.id;
+        this.name = product.name;
+        this.upc = product.upc;
+        this.manufacturer = product.manufacturer;
+        this.cost = product.cost;
+        this.shelfLife = product.shelfLife;
+        this.count = product.count;
     }
 
     private Product(){}
@@ -82,9 +94,20 @@ public class Product {
     //endregion
 
 
-    public Product[] createProductArray(Product... products){
+    public static Product[] filterByName(Product[] products, String name){
+        return Arrays.stream(products).filter(x -> x.name == name).toArray(Product[]::new);
+    }
 
-        Product[] array = new Product[products.length];
-        return array;
+    public static Product[] filterByNameAndPrice(Product[] products, String name, double price){
+        return Arrays.stream(filterByName(products, name)).filter(x -> x.cost <= price).toArray(Product[]::new);
+    }
+
+    public static Product[] filterByShelfLife(Product[] products, int days){
+        return Arrays.stream(products).filter(x -> x.shelfLife >= days).toArray(Product[]::new);
+    }
+
+    @Override
+    public String toString() {
+        return this.name+ "("+ Integer.toString(this.id)+ ")"+ "Cost:" + Double.toString(this.cost);
     }
 }

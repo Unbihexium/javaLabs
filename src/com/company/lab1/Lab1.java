@@ -121,7 +121,6 @@ public class Lab1 {
         array[b] = x;
         array[a] = y;
     }
-
     public static void matrix25(int[][] matrix){
         int maxSum = 0, maxNum = 0;
         for (int i = 0; i < matrix.length; ++i){
