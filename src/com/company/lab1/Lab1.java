@@ -1,5 +1,8 @@
 package com.company.lab1;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 
 public class Lab1 {
@@ -93,7 +96,6 @@ public class Lab1 {
 
     }
 
-    // FIXME: Можно ли пользоваться списками?
     public static void array89(double[] almostSorted) {
         int idx = 0;
         for (int i = 1; i < almostSorted.length; ++i) {
@@ -123,5 +125,24 @@ public class Lab1 {
         System.out.println(s2 + new StringBuilder(s1).reverse().toString());
     }
 
-    public static void text25(){}
+
+    public static void createTextFile() throws IOException{
+        PrintWriter out = new PrintWriter(new FileWriter("Text.txt"));
+        out.write("This section describes how to use the three exception handler components — the try, catch, and finally blocks — to write an exception handler. Then, the try-with-resources statement, introduced in Java SE 7, is explained. The try-with-resources statement is particularly suited to situations that use Closeable resources, such as streams.\n" +
+                "\n" +
+                "The last part of this section walks through an example and analyzes what occurs during various scenarios.\n" +
+                "\n" +
+                "The following example defines and implements a class named ListOfNumbers. When constructed, ListOfNumbers creates an ArrayList that contains 10 Integer elements with sequential values 0 through 9. The ListOfNumbers class also defines a method named writeList, which writes the list of numbers into a text file called OutFile.txt. This example uses output classes defined in java.io, which are covered in Basic I/O.```");
+        out.close();
+
+    }
+    public static void text25() throws IOException {
+        createTextFile();
+        var lines = Files.readAllLines(Path.of("Text.txt"));
+        for (String l: lines) {
+            System.out.println(l);
+
+        }
+
+    }
 }
