@@ -132,17 +132,30 @@ public class Lab1 {
                 "\n" +
                 "The last part of this section walks through an example and analyzes what occurs during various scenarios.\n" +
                 "\n" +
+                "\n" +
                 "The following example defines and implements a class named ListOfNumbers. When constructed, ListOfNumbers creates an ArrayList that contains 10 Integer elements with sequential values 0 through 9. The ListOfNumbers class also defines a method named writeList, which writes the list of numbers into a text file called OutFile.txt. This example uses output classes defined in java.io, which are covered in Basic I/O.```");
         out.close();
 
     }
-    public static void text25() throws IOException {
+    public static void text25(int paragraphToDelete) throws IOException {
         createTextFile();
         var lines = Files.readAllLines(Path.of("Text.txt"));
-        for (String l: lines) {
-            System.out.println(l);
+        int countParagraphs = 1;
+        for (int i = 0; i < lines.size(); ++i) {
+            if (countParagraphs == paragraphToDelete){
+                lines.remove(i);
+                break;
+            }
+            if (lines.get(i).length() == 0){
+                if (lines.get(i - 1).length() == 0)
+                    continue;
+                ++countParagraphs;
+
+            }
 
         }
-
+        for (int i = 0; i < lines.size(); ++i) {
+            System.out.println(lines.get(i));
+        }
     }
 }

@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Lab1.text25();
+            Lab1.text25(2);
         } catch (IOException e){
 
         }
