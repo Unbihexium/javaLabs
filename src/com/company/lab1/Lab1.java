@@ -109,7 +109,10 @@ public class Lab1 {
     }
 
     public static void string37(String s, String s1, String s2) {
-
+        int index = s.lastIndexOf(s1);
+        if (index == -1)
+            return;
+        System.out.println(s.substring(0, index) + s2 + s.substring(index+s1.length()));
     }
 
 

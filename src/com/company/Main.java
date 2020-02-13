@@ -8,10 +8,10 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            Lab1.text25(2);
-        } catch (IOException e){
 
-        }
+    }
+
+    public static void task10(){
+        Lab1.string37("pararapa", "ra", "pi");
     }
 }
