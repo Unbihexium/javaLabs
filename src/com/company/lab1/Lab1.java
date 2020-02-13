@@ -100,12 +100,26 @@ public class Lab1 {
         int idx = 0;
         for (int i = 1; i < almostSorted.length; ++i) {
             if (almostSorted[i - 1] < almostSorted[i]) {
-                idx = i - 1;
+                idx = i;
                 break;
             }
         }
-        for (int i = 0; i < almostSorted.length; ++i) {
+        for (int i = idx ; i < almostSorted.length; ++i) {
+            if (almostSorted[i - 1] < almostSorted[i]) {
+                swap(almostSorted, i - 1, i);
+                idx = i - 1;
+            }
         }
+        for (int i = 1; i < almostSorted.length; ++i) {
+            System.out.println(almostSorted[i]);
+        }
+    }
+
+    public static void swap(double[] array, int a, int b){
+        double x = array[a];
+        double y = array[b];
+        array[b] = x;
+        array[a] = y;
     }
 
     public static void string37(String s, String s1, String s2) {
