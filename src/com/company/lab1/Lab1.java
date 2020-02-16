@@ -48,7 +48,6 @@ public class Lab1 {
         arr[0] = rnd.nextInt();
         arr[1] = rnd.nextInt();
 
-        num = 0;
         min = arr[0] * arr[1];
 
         for (int i = 2; i < n; ++i) {
@@ -59,19 +58,15 @@ public class Lab1 {
                 num = i - 1;
             }
         }
-        System.out.println("First:" + Integer.toString(num) + "\nSecond: " + Integer.toString(num + 1));
+        System.out.println("First:" + num + "\nSecond: " + (num + 1));
     }
 
-    public static int array25(int n) {
-        int[] progression = new int[n];
-        Random rnd = new Random();
-        for (int i = 0; i < n; ++i) {
-            progression[i] = rnd.nextInt();
-        }
+    public static int array25(int[] progression) {
+
 
         int d = progression[1] / progression[0];
 
-        for (int i = 2; i < n; ++i) {
+        for (int i = 2; i < progression.length; ++i) {
             if (progression[i - 1] * d != progression[i])
                 return 0;
         }
@@ -92,7 +87,7 @@ public class Lab1 {
                 num = i - 1;
             }
         }
-        System.out.println("First elem:" + Integer.toString(arr[num]) + "\nSecond elem: " + Integer.toString(arr[num + 1]));
+        System.out.println("First elem:" + arr[num] + "\nSecond elem: " + arr[num + 1]);
 
     }
 
@@ -107,7 +102,6 @@ public class Lab1 {
         for (int i = idx ; i < almostSorted.length; ++i) {
             if (almostSorted[i - 1] < almostSorted[i]) {
                 swap(almostSorted, i - 1, i);
-                idx = i - 1;
             }
         }
         for (int i = 1; i < almostSorted.length; ++i) {
@@ -137,7 +131,7 @@ public class Lab1 {
                 maxNum = i;
             }
         }
-        System.out.println("MaxSum:" + Integer.toString(maxSum) + ", MaxNum:" + Integer.toString(maxNum));
+        System.out.println("MaxSum:" + maxSum + ", MaxNum:" + maxNum);
     }
 
     public static void string37(String s, String s1, String s2) {
@@ -189,8 +183,8 @@ public class Lab1 {
             }
 
         }
-        for (int i = 0; i < lines.size(); ++i) {
-            System.out.println(lines.get(i));
+        for (String line : lines) {
+            System.out.println(line);
         }
     }
 }

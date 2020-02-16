@@ -95,7 +95,7 @@ public class Product {
 
 
     public static Product[] filterByName(Product[] products, String name){
-        return Arrays.stream(products).filter(x -> x.name == name).toArray(Product[]::new);
+        return Arrays.stream(products).filter(x -> x.name.equals(name)).toArray(Product[]::new);
     }
 
     public static Product[] filterByNameAndPrice(Product[] products, String name, double price){
@@ -108,6 +108,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return this.name+ "("+ Integer.toString(this.id)+ ")"+ "Cost:" + Double.toString(this.cost);
+        return this.name+ "("+ this.id + ")"+ "Cost:" + this.cost;
     }
 }
