@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Lab4" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.company.lab4.Main" />
+  <configuration default="false" name="Lab5" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.company.lab5.Main" />
     <module name="javaLabs" />
     <extension name="coverage">
       <pattern>
