@@ -13,6 +13,7 @@ public class Triangle {
         this.a = a;
         this.b = b;
         this.c = c;
+        recalcAngles();
     }
 
     private Triangle() {
@@ -27,6 +28,7 @@ public class Triangle {
             throw new RuntimeException("Такой треугольник не существует");
         }
         this.a = a;
+        recalcAngles();
     }
 
     public double getB() {
@@ -38,6 +40,7 @@ public class Triangle {
             throw new RuntimeException("Такой треугольник не существует");
         }
         this.b = b;
+        recalcAngles();
     }
 
     public double getC() {
@@ -49,6 +52,7 @@ public class Triangle {
             throw new RuntimeException("Такой треугольник не существует");
         }
         this.c = c;
+        recalcAngles();
     }
 
     public double perimeter(){
