@@ -29,4 +29,72 @@ public class Main {
 
 
     }
+
+    public static void task2(){
+
+    }
+
+    class ComplexNumber {
+        // x + iy
+        public double x;
+        public double y;
+
+        public ComplexNumber() {
+            this.x = 0.0d;
+            this.y = 0.0d;
+        }
+        public ComplexNumber(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public ComplexNumber dividedBy(ComplexNumber c) {
+            double denom = c.x*c.x + c.y*c.y;
+            try {
+                if (denom == 0)
+                    throw new ComplexNumberException("/ by zero in denominator");
+                else
+                    return new ComplexNumber((x * c.x + y * c.y) / denom, (y * c.x - x * c.y) / denom);
+            } catch (ComplexNumberException e){
+                e.printStackTrace();
+                return null;
+            }
+
+        }
+
+        public ComplexNumber dividedBy(double x) {
+            try {
+                if (x == 0)
+                    throw new ComplexNumberException("/ by zero");
+                else
+                    return new ComplexNumber(this.x/x, this.y/x);
+            } catch (ComplexNumberException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    class ComplexNumberException extends Exception {
+
+        public ComplexNumberException() {
+            super();
+        }
+
+        public ComplexNumberException(String message) {
+            super(message);
+        }
+
+        public ComplexNumberException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+        public ComplexNumberException(Throwable cause) {
+            super(cause);
+        }
+
+        protected ComplexNumberException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+            super(message, cause, enableSuppression, writableStackTrace);
+        }
+    }
 }
