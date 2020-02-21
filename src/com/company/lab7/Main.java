@@ -1,16 +1,14 @@
 package com.company.lab7;
 
 import java.nio.file.Path;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
     public static void main(String[] args) {
         task1();
+        task2();
     }
 
     public static void task1(){
@@ -95,5 +93,38 @@ public class Main {
         return resultingDeque;
     }
 
+    public static void task2(){
+        // Shops
+        Shop shop1 = new Shop("1 shop");
+        Shop shop2 = new Shop("2 shop");
+        Shop shop3 = new Shop("3 shop");
+
+        // Products
+        Product product1 = new Product("1 product");
+        Product product2 = new Product("2 product");
+        Product product3 = new Product("3 product");
+
+        // Add to shop
+        shop1.addProduct(product1);
+        shop1.addProduct(product2);
+
+        // Add to shop 2
+        shop2.addProduct(product1);
+        shop2.addProduct(product2);
+
+        // Add to shop 3
+        shop1.addProduct(product1);
+
+        Shop[] shopArray = new Shop[]{shop1, shop2, shop3};
+
+        // Магазины, к которых есть первый продукт
+        Shop[] firstProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product1)).toArray(Shop[]::new);
+
+        // Магазины, к которых есть второй продукт
+        Shop[] secondProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product2)).toArray(Shop[]::new);
+        // Магазины, к которых есть третий продукт
+        Shop[] thirdProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product3)).toArray(Shop[]::new);
+        System.out.println("Done");
+    }
 
 }
