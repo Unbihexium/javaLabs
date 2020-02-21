@@ -25,6 +25,8 @@ public class Main {
             deque.add(rnd.nextInt(-50, 51));
         }
         var newArrayList = doTaskWithArrayList(arrayList);
+        var newLinkedList = doTaskWithLinkedList(linkedList);
+        var newDeque = doTaskWithArrayDeque(deque);
 
 
     }
@@ -65,24 +67,33 @@ public class Main {
         return listCopy;
     }
 
-    // TODO: WIP
-//    public static ArrayDeque<Integer> doTaskWithLinkedList(ArrayDeque<Integer> list) {
-//        ArrayDeque<Integer> listCopy = new ArrayDeque<>(list);
-//
-//        var it = listCopy.iterator();
-//        int negative = 0;
-//        while (it.hasNext()){
-//            negative = it.next();
-//            if (negative < 0)
-//                break;
-//        }
-//        for (int i = 0; i < listCopy.size(); ++i){
-//            if (i % 2 == 0){
-//                listCopyset(i, listCopy.get(i) * negative);
-//            }
-//        }
-//        return listCopy;
-//    }
+    public static ArrayDeque<Integer> doTaskWithArrayDeque(ArrayDeque<Integer> list) {
+        ArrayDeque<Integer> listCopy = new ArrayDeque<>(list);
+
+        var it = listCopy.iterator();
+        int negative = 0;
+        while (it.hasNext()){
+            negative = it.next();
+            if (negative < 0)
+                break;
+        }
+
+        // Четные
+        ArrayDeque<Integer> evenElements = new ArrayDeque<>();
+        // Нечетные
+        ArrayDeque<Integer> oddElements = new ArrayDeque<>();
+
+        while (!listCopy.isEmpty()){
+            evenElements.add(listCopy.pollFirst());
+            oddElements.add(listCopy.pollFirst());
+        }
+        var resultingDeque = new ArrayDeque<Integer>();
+        while(!evenElements.isEmpty() && !oddElements.isEmpty()){
+            resultingDeque.add(evenElements.pollFirst() * negative);
+            resultingDeque.add(oddElements.pollFirst());
+        }
+        return resultingDeque;
+    }
 
 
 }
