@@ -9,11 +9,14 @@ public class Plane {
 
     private int passengerCapacity;
 
-    public Plane(String name, String manufacturer, double fuelCapacity, int passengerCapacity) {
+    private double carryingCapacity;
+
+    public Plane(String name, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.fuelCapacity = fuelCapacity;
         this.passengerCapacity = passengerCapacity;
+        this.carryingCapacity = carryingCapacity;
     }
 
     private Plane() {
@@ -49,5 +52,13 @@ public class Plane {
 
     public void setPassengerCapacity(int passengerCapacity) {
         this.passengerCapacity = passengerCapacity;
+    }
+
+    public double getCarryingCapacity() {
+        return carryingCapacity;
+    }
+
+    public void setCarryingCapacity(double carryingCapacity) {
+        this.carryingCapacity = carryingCapacity;
     }
 }
