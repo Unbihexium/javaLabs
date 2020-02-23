@@ -11,12 +11,15 @@ public class Plane {
 
     private double carryingCapacity;
 
-    public Plane(String name, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity) {
+    private double rangeOfFlight;
+
+    public Plane(String name, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity, double rangeOfFlight) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.fuelCapacity = fuelCapacity;
         this.passengerCapacity = passengerCapacity;
         this.carryingCapacity = carryingCapacity;
+        this.rangeOfFlight = rangeOfFlight;
     }
 
     private Plane() {
@@ -60,5 +63,13 @@ public class Plane {
 
     public void setCarryingCapacity(double carryingCapacity) {
         this.carryingCapacity = carryingCapacity;
+    }
+
+    public double getRangeOfFlight() {
+        return rangeOfFlight;
+    }
+
+    public void setRangeOfFlight(double rangeOfFlight) {
+        this.rangeOfFlight = rangeOfFlight;
     }
 }
