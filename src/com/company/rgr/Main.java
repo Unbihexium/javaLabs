@@ -1,5 +1,6 @@
 package com.company.rgr;
 
+import com.company.rgr.contrtoller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/Main.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setController(new Controller());
+        loader.setLocation(getClass().getResource("view/Main.fxml"));
+        Parent root = loader.load();
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

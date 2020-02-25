@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.rgr.contrtoller.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
+      <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
@@ -13,5 +13,6 @@
    </rowConstraints>
    <children>
       <Button mnemonicParsing="false" onMouseClicked="#mouseClicked" text="Button" />
+      <Button mnemonicParsing="false" onMouseClicked="#startNewWindow" text="new window" GridPane.columnIndex="1" />
    </children>
 </GridPane>

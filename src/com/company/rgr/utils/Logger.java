@@ -11,10 +11,14 @@ public class Logger {
 
     Class aClass;
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-    ArrayList<String> logMessages = new ArrayList<>();
+    static ArrayList<String> logMessages = new ArrayList<>();
 
-    public Logger(Class aClass) {
+    private Logger(Class aClass){
         this.aClass = aClass;
+    }
+
+    public static Logger getLogger(Class aClass){
+        return new Logger(aClass);
     }
 
     public void log(String tag, String msg){
