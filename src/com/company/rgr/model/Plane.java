@@ -2,7 +2,7 @@ package com.company.rgr.model;
 
 public class Plane {
 
-    private String name;
+    private String model;
     private String manufacturer;
 
     private double fuelCapacity;
@@ -13,8 +13,8 @@ public class Plane {
 
     private double rangeOfFlight;
 
-    public Plane(String name, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity, double rangeOfFlight) {
-        this.name = name;
+    public Plane(String model, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity, double rangeOfFlight) {
+        this.model = model;
         this.manufacturer = manufacturer;
         this.fuelCapacity = fuelCapacity;
         this.passengerCapacity = passengerCapacity;
@@ -22,15 +22,15 @@ public class Plane {
         this.rangeOfFlight = rangeOfFlight;
     }
 
-    private Plane() {
+    public Plane() {
     }
 
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getManufacturer() {

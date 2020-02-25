@@ -1,6 +1,11 @@
 package com.company.rgr.contrtoller;
 
+import com.company.rgr.model.Plane;
 import com.company.rgr.utils.Logger;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddEditPlane {
 
@@ -9,8 +14,48 @@ public class AddEditPlane {
     // Делегат для добавления самолета
     Controller parent;
 
-    public void mouseClicked(){
-        logger.log("Tag", "Message");
-        parent.test();
+    Plane plane;
+
+    //Controls
+    @FXML
+    Button apply;
+
+    @FXML
+    TextField etManufacturer, etModel, etFuelCapacity, etPassengerCapacity, etCarryingCapacity, etRangeOfFlight;
+
+    public AddEditPlane() {}
+
+    public AddEditPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public void onClick(){
+        String manufacturer = etManufacturer.getText();
+        String model = etModel.getText();
+        double fuel = Double.parseDouble(etFuelCapacity.getText());
+        int passenger = Integer.parseInt(etPassengerCapacity.getText());
+        double carry = Double.parseDouble(etCarryingCapacity.getText());
+        double range = Double.parseDouble(etRangeOfFlight.getText());
+        if (plane == null) {
+            Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
+            parent.save(plane);
+        } else {
+            plane.setModel(model);
+            plane.setManufacturer(manufacturer);
+            plane.setFuelCapacity(fuel);
+            plane.setPassengerCapacity(passenger);
+            plane.setCarryingCapacity(carry);
+            plane.setRangeOfFlight(range);
+        }
+        Stage stage = (Stage) apply.getScene().getWindow();
+        stage.close();
+    }
+
+    public void prepare(){
+        if (plane != null){
+            apply.setText("Edit");
+        } else {
+            apply.setText("Add");
+        }
     }
 }
