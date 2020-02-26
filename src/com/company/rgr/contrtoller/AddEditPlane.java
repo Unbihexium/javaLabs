@@ -47,6 +47,7 @@ public class AddEditPlane {
             plane.setPassengerCapacity(passenger);
             plane.setCarryingCapacity(carry);
             plane.setRangeOfFlight(range);
+            parent.recalculateStats();
         }
         Stage stage = (Stage) apply.getScene().getWindow();
         stage.close();

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
@@ -33,6 +34,9 @@ public class Controller {
     ArrayList<Plane> planes = new ArrayList<>();
     @FXML
     ListView<Plane> planesListView;
+
+    @FXML
+    Label lWeightTotal, lPassengerTotal;
 
     private Callback<ListView<Plane>, ListCell<Plane>> callback;
     private EventHandler<MouseEvent> doubleClick;
@@ -83,6 +87,7 @@ public class Controller {
                     if (planeToDelete != null){
                         planesListView.getItems().remove(planeToDelete);
                         planes.remove(planeToDelete);
+                        recalculateStats();
                     }
                 }
             }
@@ -138,6 +143,7 @@ public class Controller {
     public void save(Plane plane){
         planes.add(plane);
         prepareListView();
+        recalculateStats();
     }
 
     public void prepareListView(){
@@ -150,4 +156,22 @@ public class Controller {
         planesListView.setOnKeyReleased(deleteEvent);
     }
 
+    public void recalculateStats(){
+
+        if (planes.isEmpty()){
+            lPassengerTotal.setText("0");
+            lWeightTotal.setText("0");
+            return;
+        }
+
+        double totalWeight = 0.0d;
+        int totalPassengers = 0;
+
+        for (Plane p: planes){
+            totalWeight += p.getCarryingCapacity();
+            totalPassengers += p.getPassengerCapacity();
+        }
+        lPassengerTotal.setText(Integer.toString(totalPassengers));
+        lWeightTotal.setText(Double.toString(totalWeight));
+    }
 }
