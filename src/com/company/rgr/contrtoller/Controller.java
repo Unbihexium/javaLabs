@@ -25,6 +25,8 @@ import javafx.util.Callback;
 import javafx.event.EventHandler;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class Controller {
@@ -54,7 +56,7 @@ public class Controller {
                             setText(null);
                             return;
                         }
-                        setText(t.getManufacturer() + " " + t.getModel());
+                        setText(t.getManufacturer() + " " + t.getModel() + ", Дальность: " + t.getRangeOfFlight());
                     }
                 };
                 return cell;
@@ -147,6 +149,18 @@ public class Controller {
     }
 
     public void prepareListView(){
+        Collections.sort(planes, new Comparator<Plane>() {
+            @Override
+            public int compare(Plane lhs, Plane rhs) {
+                // 1 - less than, -1 - greater than, 0 - equal
+                if (lhs.getRangeOfFlight() == rhs.getRangeOfFlight())
+                    return 0;
+                if (lhs.getRangeOfFlight() < rhs.getRangeOfFlight())
+                    return 1;
+                else
+                    return -1;
+            }
+        });
         planesListView.setItems(null);
         planesListView.setCellFactory(null);
         ObservableList<Plane> observableList = FXCollections.observableArrayList(planes);
