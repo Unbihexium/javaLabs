@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,6 +36,7 @@ public class Controller {
 
     private Callback<ListView<Plane>, ListCell<Plane>> callback;
     private EventHandler<MouseEvent> doubleClick;
+    private EventHandler<KeyEvent> deleteEvent;
 
     public Controller(){
         callback = new Callback<ListView<Plane>, ListCell<Plane>>() {
@@ -67,6 +70,19 @@ public class Controller {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                    }
+                }
+            }
+        };
+
+        deleteEvent = new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.DELETE){
+                    Plane planeToDelete = planesListView.getSelectionModel().getSelectedItem();
+                    if (planeToDelete != null){
+                        planesListView.getItems().remove(planeToDelete);
+                        planes.remove(planeToDelete);
                     }
                 }
             }
@@ -131,6 +147,7 @@ public class Controller {
         planesListView.setItems(observableList);
         planesListView.setCellFactory(callback);
         planesListView.setOnMouseClicked(doubleClick);
+        planesListView.setOnKeyReleased(deleteEvent);
     }
 
 }
