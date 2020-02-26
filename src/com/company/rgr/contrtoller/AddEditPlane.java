@@ -39,6 +39,7 @@ public class AddEditPlane {
         if (plane == null) {
             Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
             parent.save(plane);
+            parent.prepareListView();
         } else {
             plane.setModel(model);
             plane.setManufacturer(manufacturer);
