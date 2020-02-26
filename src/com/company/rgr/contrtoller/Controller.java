@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -39,6 +36,9 @@ public class Controller {
 
     @FXML
     Label lWeightTotal, lPassengerTotal;
+
+    @FXML
+    TextField etFuelFrom, etFuelTo;
 
     private Callback<ListView<Plane>, ListCell<Plane>> callback;
     private EventHandler<MouseEvent> doubleClick;
@@ -96,9 +96,33 @@ public class Controller {
         };
     }
 
-    public void mouseClicked(){
-        logger.log("Tag", "Message");
-        System.out.println(planes.size());
+    public void showPlanesWithRange(){
+        if (etFuelFrom.getText().isEmpty() || etFuelTo.getText().isEmpty()){
+            // TODO: Alert text is empty
+        } else {
+            double from = Double.parseDouble(etFuelFrom.getText());
+            double to = Double.parseDouble(etFuelTo.getText());
+
+            try {
+                FXMLLoader loader = new FXMLLoader();
+
+                loader.setLocation(getClass().getResource("../view/FuelRange.fxml"));
+                Parent root = loader.load();
+                Stage newWindow = new Stage();
+                FuelRangeController controller = loader.getController();
+                controller.planes = planes.stream().filter(x -> x.getFuelConsumption() <= to && x.getFuelConsumption() >= from).toArray(Plane[]::new);
+                controller.prepare();
+                newWindow.setTitle("Second Stage");
+                newWindow.setX(0);
+                newWindow.setY(0);
+                newWindow.setScene(new Scene(root, 350, 350));
+                newWindow.setResizable(false);
+                newWindow.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public void startNewWindow(Plane plane) throws IOException {

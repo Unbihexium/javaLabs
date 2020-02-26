@@ -19,7 +19,7 @@
                </children></HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="27.0" prefWidth="130.0" text="Запас топлива:" />
+                  <Label prefHeight="27.0" prefWidth="130.0" text="Расход топл." />
                   <TextField fx:id="etFuelCapacity" />
                </children></HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">

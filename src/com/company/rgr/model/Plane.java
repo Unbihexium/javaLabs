@@ -5,7 +5,7 @@ public class Plane {
     private String model;
     private String manufacturer;
 
-    private double fuelCapacity;
+    private double fuelConsumption;
 
     private int passengerCapacity;
 
@@ -13,10 +13,10 @@ public class Plane {
 
     private double rangeOfFlight;
 
-    public Plane(String model, String manufacturer, double fuelCapacity, int passengerCapacity, double carryingCapacity, double rangeOfFlight) {
+    public Plane(String model, String manufacturer, double fuelConsumption, int passengerCapacity, double carryingCapacity, double rangeOfFlight) {
         this.model = model;
         this.manufacturer = manufacturer;
-        this.fuelCapacity = fuelCapacity;
+        this.fuelConsumption = fuelConsumption;
         this.passengerCapacity = passengerCapacity;
         this.carryingCapacity = carryingCapacity;
         this.rangeOfFlight = rangeOfFlight;
@@ -41,12 +41,12 @@ public class Plane {
         this.manufacturer = manufacturer;
     }
 
-    public double getFuelCapacity() {
-        return fuelCapacity;
+    public double getFuelConsumption() {
+        return fuelConsumption;
     }
 
-    public void setFuelCapacity(double fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
+    public void setFuelConsumption(double fuelConsumption) {
+        this.fuelConsumption = fuelConsumption;
     }
 
     public int getPassengerCapacity() {

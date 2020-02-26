@@ -42,7 +42,7 @@ public class AddEditPlane {
         } else {
             plane.setModel(model);
             plane.setManufacturer(manufacturer);
-            plane.setFuelCapacity(fuel);
+            plane.setFuelConsumption(fuel);
             plane.setPassengerCapacity(passenger);
             plane.setCarryingCapacity(carry);
             plane.setRangeOfFlight(range);
@@ -58,7 +58,7 @@ public class AddEditPlane {
             apply.setText("Edit");
             etManufacturer.setText(plane.getManufacturer());
             etModel.setText(plane.getModel());
-            etFuelCapacity.setText(Double.toString(plane.getFuelCapacity()));
+            etFuelCapacity.setText(Double.toString(plane.getFuelConsumption()));
             etPassengerCapacity.setText(Integer.toString(plane.getPassengerCapacity()));
             etCarryingCapacity.setText(Double.toString(plane.getCarryingCapacity()));
             etRangeOfFlight.setText(Double.toString(plane.getRangeOfFlight()));
