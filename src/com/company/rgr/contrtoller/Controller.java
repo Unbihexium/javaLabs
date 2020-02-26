@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,6 +21,7 @@ public class Controller {
     Logger logger = Logger.getLogger(this.getClass());
 
     ArrayList<Plane> planes = new ArrayList<>();
+    ListView<Plane> planeListView;
 
     public void mouseClicked(){
         logger.log("Tag", "Message");
@@ -49,7 +51,11 @@ public class Controller {
 
     public void save(Plane plane){
         planes.add(plane);
+        prepareListView();
     }
 
+    public void prepareListView(){
+
+    }
 
 }

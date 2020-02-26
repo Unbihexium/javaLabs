@@ -54,6 +54,12 @@ public class AddEditPlane {
     public void prepare(){
         if (plane != null){
             apply.setText("Edit");
+            etManufacturer.setText(plane.getManufacturer());
+            etModel.setText(plane.getModel());
+            etFuelCapacity.setText(Double.toString(plane.getFuelCapacity()));
+            etPassengerCapacity.setText(Integer.toString(plane.getPassengerCapacity()));
+            etCarryingCapacity.setText(Double.toString(plane.getCarryingCapacity()));
+            etRangeOfFlight.setText(Double.toString(plane.getRangeOfFlight()));
         } else {
             apply.setText("Add");
         }

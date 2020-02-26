@@ -3,16 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Button mnemonicParsing="false" onMouseClicked="#mouseClicked" text="Button" />
-      <Button mnemonicParsing="false" onMouseClicked="#startNewWindow" text="new window" GridPane.columnIndex="1" />
-   </children>
-</GridPane>
+<AnchorPane prefHeight="289.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Button layoutX="46.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#mouseClicked" text="Button" />
+        <Button layoutX="114.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#startNewWindow" text="new window" />
+      <ListView fx:id="planesListView" prefHeight="200.0" prefWidth="346.0" />
+        
+    </children>
+</AnchorPane>
