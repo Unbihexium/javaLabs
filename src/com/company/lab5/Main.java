@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Введите x");
         double x = sc.nextDouble();
         try {
-            if (x == 0)
+            if (x == 0 || x == 2 || x == -2)
                 throw new ArithmeticException("/ by zero");
             double denum = 2 + (1 + x + x * x) / (2 * x + x * x) - (1 - x + x * x) / (2 * x - x * x);
             if (denum == 0)
