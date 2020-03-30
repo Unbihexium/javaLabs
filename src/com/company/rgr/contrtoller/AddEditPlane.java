@@ -39,6 +39,7 @@ public class AddEditPlane {
         if (plane == null) {
             Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
             parent.save(plane);
+            logger.log("Добавлен новый самолет");
         } else {
             plane.setModel(model);
             plane.setManufacturer(manufacturer);
@@ -47,10 +48,11 @@ public class AddEditPlane {
             plane.setCarryingCapacity(carry);
             plane.setRangeOfFlight(range);
             parent.recalculateStats();
+            logger.log("Обновлены данные самолета");
         }
-        parent.prepareListView();
         Stage stage = (Stage) apply.getScene().getWindow();
         stage.close();
+        logger.log("Закрыто окно " + (plane != null ? "добавления" : "редактирования") + " самолета");
     }
 
     public void prepare(){
@@ -62,8 +64,10 @@ public class AddEditPlane {
             etPassengerCapacity.setText(Integer.toString(plane.getPassengerCapacity()));
             etCarryingCapacity.setText(Double.toString(plane.getCarryingCapacity()));
             etRangeOfFlight.setText(Double.toString(plane.getRangeOfFlight()));
+            logger.log("Инициализировано окно редактирования самолета");
         } else {
             apply.setText("Add");
+            logger.log("Инициализировано окно добавления самолета");
         }
     }
 }

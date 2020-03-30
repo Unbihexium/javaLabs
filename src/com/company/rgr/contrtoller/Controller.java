@@ -89,6 +89,7 @@ public class Controller {
                     if (planeToDelete != null){
                         planesListView.getItems().remove(planeToDelete);
                         planes.remove(planeToDelete);
+                        logger.log("Удален самолет");
                         recalculateStats();
                     }
                 }
@@ -118,6 +119,7 @@ public class Controller {
                 newWindow.setScene(new Scene(root, 350, 350));
                 newWindow.setResizable(false);
                 newWindow.show();
+                logger.log("Показано окно c самолетами с дальностью полета от:" + from + " до: " + to);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -142,6 +144,7 @@ public class Controller {
         newWindow.setScene(new Scene(root, 350, 350));
         newWindow.setResizable(false);
         newWindow.show();
+        logger.log("Показано окно редактирования самолета");
     }
 
     public void startNewWindow() throws IOException {
@@ -160,6 +163,7 @@ public class Controller {
         newWindow.setScene(new Scene(root, 350, 350));
         newWindow.setResizable(false);
         newWindow.show();
+        logger.log("Показано окно добавления самолета");
     }
 
     public void test(){
@@ -192,6 +196,7 @@ public class Controller {
         planesListView.setCellFactory(callback);
         planesListView.setOnMouseClicked(doubleClick);
         planesListView.setOnKeyReleased(deleteEvent);
+        logger.log("Обновлен ListView с самолетами");
     }
 
     public void recalculateStats(){

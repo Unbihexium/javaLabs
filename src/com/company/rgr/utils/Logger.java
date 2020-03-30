@@ -21,8 +21,8 @@ public class Logger {
         return new Logger(aClass);
     }
 
-    public void log(String tag, String msg){
-        logMessages.add("[" + LocalDateTime.now().format(dateFormat) + "] at " + aClass.getName() + " - " + tag + ": " + msg);
+    public void log(String msg){
+        logMessages.add("[" + LocalDateTime.now().format(dateFormat) + "] at " + aClass.getName() + ": " + msg);
         System.out.println(logMessages.get(logMessages.size() - 1));
     }
 }
