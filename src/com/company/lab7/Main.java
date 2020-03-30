@@ -113,18 +113,26 @@ public class Main {
         shop2.addProduct(product2);
 
         // Add to shop 3
-        shop1.addProduct(product1);
+        shop3.addProduct(product1);
 
-        Shop[] shopArray = new Shop[]{shop1, shop2, shop3};
+        Shop[] shops = new Shop[]{shop1, shop2, shop3};
 
-        // Магазины, к которых есть первый продукт
-        Shop[] firstProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product1)).toArray(Shop[]::new);
+        Product[] products = new Product[]{product1, product2, product3};
 
-        // Магазины, к которых есть второй продукт
-        Shop[] secondProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product2)).toArray(Shop[]::new);
-        // Магазины, к которых есть третий продукт
-        Shop[] thirdProduct = Arrays.stream(shopArray).filter(x -> x.products.contains(product3)).toArray(Shop[]::new);
-        System.out.println("Done");
+        for (int i = 0; i < products.length; ++i){
+            int count = 0;
+            for (int j = 0; j < shops.length; ++j){
+                if (shops[j].contains(products[i]))
+                    ++count;
+            }
+            if (count == 3)
+                System.out.println("Продукт \"" + products[i].getName() + "\" содержится во всех магазинах");
+            if (count == 0)
+                System.out.println("Продукт \"" + products[i].getName() + "\" не содержится ни в одном магазине");
+            if (count != 3 && count != 0)
+                System.out.println("Продукт \"" + products[i].getName() + "\" содержится в нескольких магазинах");
+
+        }
     }
 
 }

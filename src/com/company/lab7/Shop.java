@@ -24,6 +24,10 @@ public class Shop {
         this.products.add(product);
     }
 
+    public boolean contains(Product p) {
+        return products.contains(p);
+    }
+
     @Override
     public String toString() {
         return "Магазин " + this.shopName;
