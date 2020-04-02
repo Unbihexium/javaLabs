@@ -3,6 +3,7 @@ package com.company.rgr.contrtoller;
 import com.company.rgr.model.Plane;
 import com.company.rgr.utils.Logger;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,29 +31,42 @@ public class AddEditPlane {
     }
 
     public void onClick(){
-        String manufacturer = etManufacturer.getText();
-        String model = etModel.getText();
-        double fuel = Double.parseDouble(etFuelCapacity.getText());
-        int passenger = Integer.parseInt(etPassengerCapacity.getText());
-        double carry = Double.parseDouble(etCarryingCapacity.getText());
-        double range = Double.parseDouble(etRangeOfFlight.getText());
-        if (plane == null) {
-            Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
-            parent.save(plane);
-            logger.log("Добавлен новый самолет");
-        } else {
-            plane.setModel(model);
-            plane.setManufacturer(manufacturer);
-            plane.setFuelConsumption(fuel);
-            plane.setPassengerCapacity(passenger);
-            plane.setCarryingCapacity(carry);
-            plane.setRangeOfFlight(range);
-            parent.recalculateStats();
-            logger.log("Обновлены данные самолета");
+        try {
+
+            String manufacturer = etManufacturer.getText();
+            String model = etModel.getText();
+            double fuel = Double.parseDouble(etFuelCapacity.getText());
+            int passenger = Integer.parseInt(etPassengerCapacity.getText());
+            double carry = Double.parseDouble(etCarryingCapacity.getText());
+            double range = Double.parseDouble(etRangeOfFlight.getText());
+            if (plane == null) {
+                Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
+                parent.save(plane);
+                logger.log("Добавлен новый самолет");
+            } else {
+                plane.setModel(model);
+                plane.setManufacturer(manufacturer);
+                plane.setFuelConsumption(fuel);
+                plane.setPassengerCapacity(passenger);
+                plane.setCarryingCapacity(carry);
+                plane.setRangeOfFlight(range);
+                parent.recalculateStats();
+                logger.log("Обновлены данные самолета");
+            }
+            Stage stage = (Stage) apply.getScene().getWindow();
+            stage.close();
+            logger.log("Закрыто окно " + (plane != null ? "добавления" : "редактирования") + " самолета");
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Неверные данные");
+            alert.setContentText("В числовые поля должны вводиться числа");
+
+            alert.showAndWait();
         }
-        Stage stage = (Stage) apply.getScene().getWindow();
-        stage.close();
-        logger.log("Закрыто окно " + (plane != null ? "добавления" : "редактирования") + " самолета");
     }
 
     public void prepare(){

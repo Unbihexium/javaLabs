@@ -99,12 +99,19 @@ public class Controller {
 
     public void showPlanesWithRange(){
         if (etFuelFrom.getText().isEmpty() || etFuelTo.getText().isEmpty()){
-            // TODO: Alert text is empty
-        } else {
-            double from = Double.parseDouble(etFuelFrom.getText());
-            double to = Double.parseDouble(etFuelTo.getText());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
 
+            alert.setTitle("Ошибка");
+            alert.setHeaderText("Неверные данные");
+            alert.setContentText("Поля ввода пусты");
+
+            alert.showAndWait();
+        } else {
             try {
+                // TODO: Запятая не воспринимается
+                double from = Double.parseDouble(etFuelFrom.getText());
+                double to = Double.parseDouble(etFuelTo.getText());
+
                 FXMLLoader loader = new FXMLLoader();
 
                 loader.setLocation(getClass().getResource("../view/FuelRange.fxml"));
@@ -122,6 +129,15 @@ public class Controller {
                 logger.log("Показано окно c самолетами с дальностью полета от:" + from + " до: " + to);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                alert.setTitle("Ошибка");
+                alert.setHeaderText("Неверные данные");
+                alert.setContentText("В поля ввода необходимо ввести вещественные числа");
+
+                alert.showAndWait();
             }
 
         }
@@ -164,10 +180,6 @@ public class Controller {
         newWindow.setResizable(false);
         newWindow.show();
         logger.log("Показано окно добавления самолета");
-    }
-
-    public void test(){
-
     }
 
     public void save(Plane plane){
