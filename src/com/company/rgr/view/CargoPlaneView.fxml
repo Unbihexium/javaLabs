@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.company.rgr.contrtoller.CargoPlaneController">
+    <children>
+
+        <TextField fx:id="model" layoutX="140.0" layoutY="20.0"/>
+        <TextField fx:id="manufacturer" layoutX="140.0" layoutY="60.0"/>
+        <TextField fx:id="crew" layoutX="140.0" layoutY="100.0"/>
+        <TextField fx:id="range" layoutX="140.0" layoutY="140.0"/>
+        <Label layoutX="15.0" layoutY="25.0" text="Модель"/>
+        <Label layoutX="15.0" layoutY="65.0" text="Производитель"/>
+        <Label layoutX="15.0" layoutY="105.0" text="Экипаж"/>
+        <Label layoutX="15.0" layoutY="145.0" text="Дальность полета"/>
+
+
+        <TextField fx:id="carryingCapacity" layoutX="140.0" layoutY="180.0"/>
+        <Label layoutX="15.0" layoutY="185.0" text="Вместимость груза"/>
+
+        <Button fx:id="btn" layoutX="440.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#onBtnClk"
+                text="Добавить"/>
+
+    </children>
+</AnchorPane>

@@ -1,6 +1,6 @@
 package com.company.rgr.contrtoller;
 
-import com.company.rgr.model.Plane;
+import com.company.rgr.model.AbstractPlane;
 import com.company.rgr.utils.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,7 +15,7 @@ public class AddEditPlane {
     // Делегат для добавления самолета
     Controller parent;
 
-    Plane plane;
+    AbstractPlane plane;
 
     //Controls
     @FXML
@@ -26,7 +26,7 @@ public class AddEditPlane {
 
     public AddEditPlane() {}
 
-    public AddEditPlane(Plane plane) {
+    public AddEditPlane(AbstractPlane plane) {
         this.plane = plane;
     }
 
@@ -40,15 +40,15 @@ public class AddEditPlane {
             double carry = Double.parseDouble(etCarryingCapacity.getText());
             double range = Double.parseDouble(etRangeOfFlight.getText());
             if (plane == null) {
-                Plane plane = new Plane(model, manufacturer, fuel, passenger, carry, range);
-                parent.save(plane);
+//                AbstractPlane plane = new AbstractPlane(model, manufacturer, fuel, passenger, carry, range);
+//                parent.save(plane);
                 logger.log("Добавлен новый самолет");
             } else {
                 plane.setModel(model);
                 plane.setManufacturer(manufacturer);
-                plane.setFuelConsumption(fuel);
-                plane.setPassengerCapacity(passenger);
-                plane.setCarryingCapacity(carry);
+//                plane.setFuelConsumption(fuel);
+//                plane.setPassengerCapacity(passenger);
+//                plane.setCarryingCapacity(carry);
                 plane.setRangeOfFlight(range);
                 parent.recalculateStats();
                 logger.log("Обновлены данные самолета");
@@ -74,9 +74,9 @@ public class AddEditPlane {
             apply.setText("Edit");
             etManufacturer.setText(plane.getManufacturer());
             etModel.setText(plane.getModel());
-            etFuelCapacity.setText(Double.toString(plane.getFuelConsumption()));
-            etPassengerCapacity.setText(Integer.toString(plane.getPassengerCapacity()));
-            etCarryingCapacity.setText(Double.toString(plane.getCarryingCapacity()));
+//            etFuelCapacity.setText(Double.toString(plane.getFuelConsumption()));
+//            etPassengerCapacity.setText(Integer.toString(plane.getPassengerCapacity()));
+//            etCarryingCapacity.setText(Double.toString(plane.getCarryingCapacity()));
             etRangeOfFlight.setText(Double.toString(plane.getRangeOfFlight()));
             logger.log("Инициализировано окно редактирования самолета");
         } else {

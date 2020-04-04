@@ -3,20 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.rgr.contrtoller.Controller">
     <children>
         <Button layoutX="502.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#showPlanesWithRange" prefHeight="26.0" prefWidth="84.0" text="Show" />
         <Button layoutX="502.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#startNewWindow" text="Add plane" />
         <ListView fx:id="planesListView" prefHeight="200.0" prefWidth="600.0" />
         <Label layoutX="14.0" layoutY="206.0" prefHeight="40.0" prefWidth="140.0" text="Общая вес грузов:" />
         <Label layoutX="14.0" layoutY="246.0" prefHeight="40.0" prefWidth="140.0" text="Общее кол-во пас.:" />
+        <Label layoutX="14.0" layoutY="286.0" prefHeight="40.0" prefWidth="140.0" text="Общее кол-во экип.:" />
         <Label fx:id="lWeightTotal" layoutX="154.0" layoutY="206.0" prefHeight="40.0" prefWidth="140.0" text="0" />
         <Label fx:id="lPassengerTotal" layoutX="154.0" layoutY="246.0" prefHeight="40.0" prefWidth="140.0" text="0" />
-        <Label layoutX="14.0" layoutY="286.0" text="Потребление топлива:" />
-        <Label layoutX="14.0" layoutY="306.0" text="От:" />
-        <TextField fx:id="etFuelFrom" layoutX="14.0" layoutY="322.0" prefHeight="26.0" prefWidth="84.0" />
-        <Label layoutX="128.0" layoutY="306.0" text="До:" />
-        <TextField fx:id="etFuelTo" layoutX="128.0" layoutY="322.0" prefHeight="26.0" prefWidth="84.0" />
+        <Label fx:id="lCrewTotal" layoutX="154.0" layoutY="286.0" prefHeight="40.0" prefWidth="140.0" text="0" />
+        <Label layoutX="14.0" layoutY="332.0" text="Дальность полета" />
+        <Label layoutX="14.0" layoutY="352.0" text="От:" />
+        <TextField fx:id="etFuelFrom" layoutX="14.0" layoutY="368.0" prefHeight="26.0" prefWidth="84.0" />
+        <Label layoutX="128.0" layoutY="352.0" text="До:" />
+        <TextField fx:id="etFuelTo" layoutX="128.0" layoutY="368.0" prefHeight="26.0" prefWidth="84.0" />
+      <ChoiceBox fx:id="planeType" layoutX="335.0" layoutY="213.0" prefWidth="150.0" />
 
     </children>
 </AnchorPane>
