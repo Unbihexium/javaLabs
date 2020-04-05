@@ -340,64 +340,75 @@ public class Controller {
     }
 
     public void writeToFile(File f) throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(f);
-        for(AbstractPlane plane: this.planes){
-            if (plane instanceof PassengerPlane){
-                PassengerPlane p = (PassengerPlane) plane;
-                StringBuilder bld = new StringBuilder();
-                bld.append("P;");
-                bld.append(p.getModel());
-                bld.append(";");
-                bld.append(p.getManufacturer());
-                bld.append(";");
-                bld.append(p.getCrew());
-                bld.append(";");
-                bld.append(p.getRangeOfFlight());
-                bld.append(";");
-                bld.append(p.getCarryingCapacity());
-                bld.append(";");
-                bld.append(p.getPassengers());
-                bld.append("\n");
-                writer.write(bld.toString());
-                continue;
-            }
-            if (plane instanceof CargoPlane){
-                CargoPlane p = (CargoPlane) plane;
-                StringBuilder bld = new StringBuilder();
-                bld.append("C;");
-                bld.append(p.getModel());
-                bld.append(";");
-                bld.append(p.getManufacturer());
-                bld.append(";");
-                bld.append(p.getCrew());
-                bld.append(";");
-                bld.append(p.getRangeOfFlight());
-                bld.append(";");
-                bld.append(p.getCarryingCapacity());
-                bld.append("\n");
-                writer.write(bld.toString());
-                continue;
-            }
-            if (plane instanceof FireFighterPlane){
-                FireFighterPlane p = (FireFighterPlane) plane;
-                StringBuilder bld = new StringBuilder();
-                bld.append("F;");
-                bld.append(p.getModel());
-                bld.append(";");
-                bld.append(p.getManufacturer());
-                bld.append(";");
-                bld.append(p.getCrew());
-                bld.append(";");
-                bld.append(p.getRangeOfFlight());
-                bld.append(";");
-                bld.append(p.getWaterCapacity());
-                bld.append("\n");
-                writer.write(bld.toString());
-                continue;
-            }
-        }
 
-        writer.close();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    PrintWriter writer = new PrintWriter(f);
+                    for (AbstractPlane plane : planes) {
+                        if (plane instanceof PassengerPlane) {
+                            PassengerPlane p = (PassengerPlane) plane;
+                            StringBuilder bld = new StringBuilder();
+                            bld.append("P;");
+                            bld.append(p.getModel());
+                            bld.append(";");
+                            bld.append(p.getManufacturer());
+                            bld.append(";");
+                            bld.append(p.getCrew());
+                            bld.append(";");
+                            bld.append(p.getRangeOfFlight());
+                            bld.append(";");
+                            bld.append(p.getCarryingCapacity());
+                            bld.append(";");
+                            bld.append(p.getPassengers());
+                            bld.append("\n");
+                            writer.write(bld.toString());
+                            continue;
+                        }
+                        if (plane instanceof CargoPlane) {
+                            CargoPlane p = (CargoPlane) plane;
+                            StringBuilder bld = new StringBuilder();
+                            bld.append("C;");
+                            bld.append(p.getModel());
+                            bld.append(";");
+                            bld.append(p.getManufacturer());
+                            bld.append(";");
+                            bld.append(p.getCrew());
+                            bld.append(";");
+                            bld.append(p.getRangeOfFlight());
+                            bld.append(";");
+                            bld.append(p.getCarryingCapacity());
+                            bld.append("\n");
+                            writer.write(bld.toString());
+                            continue;
+                        }
+                        if (plane instanceof FireFighterPlane) {
+                            FireFighterPlane p = (FireFighterPlane) plane;
+                            StringBuilder bld = new StringBuilder();
+                            bld.append("F;");
+                            bld.append(p.getModel());
+                            bld.append(";");
+                            bld.append(p.getManufacturer());
+                            bld.append(";");
+                            bld.append(p.getCrew());
+                            bld.append(";");
+                            bld.append(p.getRangeOfFlight());
+                            bld.append(";");
+                            bld.append(p.getWaterCapacity());
+                            bld.append("\n");
+                            writer.write(bld.toString());
+                            continue;
+                        }
+                    }
+
+                    writer.close();
+                } catch (FileNotFoundException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
     public void load(){
