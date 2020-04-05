@@ -17,10 +17,16 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -311,5 +317,154 @@ public class Controller {
         lPassengerTotal.setText(Integer.toString(totalPassengers));
         lWeightTotal.setText(Double.toString(totalWeight));
         lCrewTotal.setText(Integer.toString(totalCrew));
+    }
+
+    public void save(){
+        System.out.println("Save");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Pictures");
+
+        // Set Initial Directory
+        fileChooser.setInitialDirectory(new File("/Users/ednalobin/Documents/"));
+
+        File contents = fileChooser.showSaveDialog(this.planesListView.getScene().getWindow());
+
+        if (contents != null) {
+            contents = new File(contents.getAbsolutePath() + ".parc");
+            try {
+                writeToFile(contents);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void writeToFile(File f) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(f);
+        for(AbstractPlane plane: this.planes){
+            if (plane instanceof PassengerPlane){
+                PassengerPlane p = (PassengerPlane) plane;
+                StringBuilder bld = new StringBuilder();
+                bld.append("P;");
+                bld.append(p.getModel());
+                bld.append(";");
+                bld.append(p.getManufacturer());
+                bld.append(";");
+                bld.append(p.getCrew());
+                bld.append(";");
+                bld.append(p.getRangeOfFlight());
+                bld.append(";");
+                bld.append(p.getCarryingCapacity());
+                bld.append(";");
+                bld.append(p.getPassengers());
+                bld.append("\n");
+                writer.write(bld.toString());
+                continue;
+            }
+            if (plane instanceof CargoPlane){
+                CargoPlane p = (CargoPlane) plane;
+                StringBuilder bld = new StringBuilder();
+                bld.append("C;");
+                bld.append(p.getModel());
+                bld.append(";");
+                bld.append(p.getManufacturer());
+                bld.append(";");
+                bld.append(p.getCrew());
+                bld.append(";");
+                bld.append(p.getRangeOfFlight());
+                bld.append(";");
+                bld.append(p.getCarryingCapacity());
+                bld.append("\n");
+                writer.write(bld.toString());
+                continue;
+            }
+            if (plane instanceof FireFighterPlane){
+                FireFighterPlane p = (FireFighterPlane) plane;
+                StringBuilder bld = new StringBuilder();
+                bld.append("F;");
+                bld.append(p.getModel());
+                bld.append(";");
+                bld.append(p.getManufacturer());
+                bld.append(";");
+                bld.append(p.getCrew());
+                bld.append(";");
+                bld.append(p.getRangeOfFlight());
+                bld.append(";");
+                bld.append(p.getWaterCapacity());
+                bld.append("\n");
+                writer.write(bld.toString());
+                continue;
+            }
+        }
+
+        writer.close();
+    }
+
+    public void load(){
+        System.out.println("Load");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Pictures");
+
+        // Set Initial Directory
+        fileChooser.setInitialDirectory(new File("/Users/ednalobin/Documents/"));
+
+        // Add Extension Filters
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PArc", "*.parc"));
+
+        File contents = fileChooser.showOpenDialog(this.planesListView.getScene().getWindow());
+        System.out.println(contents);
+        try {
+            var planes = loadFromFile(contents);
+            if (planes != null) {
+                this.planes = planes;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        prepareListView();
+        recalculateStats();
+    }
+
+    public ArrayList<AbstractPlane> loadFromFile(File file) throws IOException {
+        var planes = new ArrayList<AbstractPlane>();
+        var lines = Files.readAllLines(Path.of(String.valueOf(file)));
+        for (String l: lines){
+            var split = l.split(";");
+            switch (split[0]){
+                case "P":
+                    PassengerPlane pp = new PassengerPlane();
+                    pp.setModel(split[1]);
+                    pp.setManufacturer(split[2]);
+                    pp.setCrew(Integer.parseInt(split[3]));
+                    pp.setRangeOfFlight(Double.parseDouble(split[4]));
+                    pp.setCarryingCapacity(Double.parseDouble(split[5]));
+                    pp.setPassengers(Integer.parseInt(split[6]));
+                    planes.add(pp);
+                    break;
+                case "C":
+                    CargoPlane cp = new CargoPlane();
+                    cp.setModel(split[1]);
+                    cp.setManufacturer(split[2]);
+                    cp.setCrew(Integer.parseInt(split[3]));
+                    cp.setRangeOfFlight(Double.parseDouble(split[4]));
+                    cp.setCarryingCapacity(Double.parseDouble(split[5]));
+                    planes.add(cp);
+                    break;
+                case "F":
+                    FireFighterPlane fp = new FireFighterPlane();
+                    fp.setModel(split[1]);
+                    fp.setManufacturer(split[2]);
+                    fp.setCrew(Integer.parseInt(split[3]));
+                    fp.setRangeOfFlight(Double.parseDouble(split[4]));
+                    fp.setWaterCapacity(Double.parseDouble(split[5]));
+                    planes.add(fp);
+                    break;
+
+            }
+        }
+        if (!planes.isEmpty())
+            return planes;
+        else
+            return null;
     }
 }

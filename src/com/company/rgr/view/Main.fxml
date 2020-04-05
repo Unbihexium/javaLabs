@@ -20,6 +20,8 @@
         <Label layoutX="128.0" layoutY="352.0" text="До:" />
         <TextField fx:id="etFuelTo" layoutX="128.0" layoutY="368.0" prefHeight="26.0" prefWidth="84.0" />
       <ChoiceBox fx:id="planeType" layoutX="335.0" layoutY="213.0" prefWidth="150.0" />
+      <Button layoutX="502.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#load" prefHeight="27.0" prefWidth="84.0" text="Загрузить" />
+      <Button layoutX="410.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#save" prefHeight="27.0" prefWidth="84.0" text="Сохранить" />
 
     </children>
 </AnchorPane>

@@ -9,6 +9,8 @@ public abstract class AbstractPlane {
 
     private int crew;
 
+    public AbstractPlane(){}
+
     public AbstractPlane(String model, String manufacturer, double rangeOfFlight, int crew) {
         this.model = model;
         this.manufacturer = manufacturer;

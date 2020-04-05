@@ -4,6 +4,10 @@ public class FireFighterPlane extends AbstractPlane {
 
     private double waterCapacity;
 
+    public FireFighterPlane(){
+        super();
+    }
+
     public FireFighterPlane(String model, String manufacturer, double rangeOfFlight, int crew, double waterCapacity) {
         super(model, manufacturer, rangeOfFlight, crew);
         this.waterCapacity = waterCapacity;

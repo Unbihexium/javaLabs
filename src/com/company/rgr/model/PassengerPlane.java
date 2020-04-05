@@ -4,6 +4,10 @@ public class PassengerPlane extends CargoPlane {
 
     private int passengers;
 
+    public PassengerPlane(){
+        super();
+    }
+
     public PassengerPlane(String model, String manufacturer, double rangeOfFlight, int crew, double carryingCapacity,  int passengers) {
         super(model, manufacturer, rangeOfFlight, crew, carryingCapacity);
         this.passengers = passengers;
