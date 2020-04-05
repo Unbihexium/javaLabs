@@ -42,7 +42,6 @@ public class RangeOfFlightController {
                             return;
                         }
 
-                        //TODO: Попробовать придумать способ попрямее
                         if (t instanceof CargoPlane)
                             setText("CargoPlane: " + t.getManufacturer() + " " + t.getModel() + ", Дальность: " + t.getRangeOfFlight());
                         if (t instanceof PassengerPlane)

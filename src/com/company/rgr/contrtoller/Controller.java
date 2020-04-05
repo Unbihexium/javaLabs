@@ -67,7 +67,6 @@ public class Controller {
                             return;
                         }
 
-                        //TODO: Попробовать придумать способ попрямее
                         if (t instanceof CargoPlane)
                             setText("CargoPlane: " + t.getManufacturer() + " " + t.getModel() + ", Дальность: " + t.getRangeOfFlight());
                         if (t instanceof PassengerPlane)
@@ -131,7 +130,6 @@ public class Controller {
             alert.showAndWait();
         } else {
             try {
-                // TODO: Запятая не воспринимается
                 double from = Double.parseDouble(etFuelFrom.getText());
                 double to = Double.parseDouble(etFuelTo.getText());
 
