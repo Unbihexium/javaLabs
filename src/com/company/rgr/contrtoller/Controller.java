@@ -168,6 +168,7 @@ public class Controller {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
                 e.printStackTrace();
+                logger.log("Ошибка при вводе данных");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
 
                 alert.setTitle("Ошибка");
@@ -318,10 +319,10 @@ public class Controller {
         lPassengerTotal.setText(Integer.toString(totalPassengers));
         lWeightTotal.setText(Double.toString(totalWeight));
         lCrewTotal.setText(Integer.toString(totalCrew));
+        logger.log("Пересчитана статистика");
     }
 
     public void save(){
-        System.out.println("Save");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Pictures");
 
@@ -329,10 +330,11 @@ public class Controller {
         fileChooser.setInitialDirectory(new File("/Users/ednalobin/Documents/"));
 
         File contents = fileChooser.showSaveDialog(this.planesListView.getScene().getWindow());
-
+        logger.log("Показано окно выбора пути сохранения");
         if (contents != null) {
             contents = new File(contents.getAbsolutePath() + ".parc");
             try {
+                logger.log("Начато сохранение");
                 writeToFile(contents);
             } catch (Exception e){
                 e.printStackTrace();
@@ -341,7 +343,7 @@ public class Controller {
     }
 
     public void writeToFile(File f) throws FileNotFoundException {
-
+        logger.log("Создан фоновый поток для сохранения");
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -407,13 +409,20 @@ public class Controller {
                 } catch (FileNotFoundException e){
                     e.printStackTrace();
                 }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        logger.log("Сохранение завершено");
+                        logger.log("Поток останавливается");
+                    }
+                });
             }
         });
+        logger.log("Запущен фоновый поток");
         thread.start();
     }
 
     public void load(){
-        System.out.println("Load");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Pictures");
 
@@ -438,9 +447,11 @@ public class Controller {
 
                             @Override
                             public void run() {
+                                logger.log("Получение данных из фонового потока");
                                 getResultFromBackground(buf);
                                 prepareListView();
                                 recalculateStats();
+                                logger.log("Остановка фонового потока");
                             }
                         };
                         Platform.runLater(updater);
@@ -449,7 +460,9 @@ public class Controller {
                     }
                 }
             });
+            logger.log("Создан фоновый поток для загрузки");
             thread.start();
+            logger.log("Запущен фоновый поток");
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -458,8 +471,10 @@ public class Controller {
     }
 
     public void getResultFromBackground(ArrayList<AbstractPlane> planes){
-        if (planes != null)
+        if (planes != null) {
             this.planes = planes;
+            logger.log("Данные загружены");
+        }
     }
 
     public ArrayList<AbstractPlane> loadFromFile(File file) throws IOException {

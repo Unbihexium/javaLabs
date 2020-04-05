@@ -3,11 +3,14 @@ package com.company.rgr.contrtoller;
 import com.company.rgr.model.CargoPlane;
 import com.company.rgr.model.FireFighterPlane;
 import com.company.rgr.model.PassengerPlane;
+import com.company.rgr.utils.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class PassengerPlaneController extends BasePlaneController {
+
+    Logger logger = Logger.getLogger(this.getClass());
 
     @FXML
     TextField carryingCapacity, passengers;
@@ -42,8 +45,10 @@ public class PassengerPlaneController extends BasePlaneController {
         int passengers = Integer.parseInt(this.passengers.getText());
 
         if (plane == null) {
+            logger.log("Сохранен новый пассажирский самолет");
             this.controller.save(new PassengerPlane(model, manufacturer, range, crew, carryingCapacity, passengers));
         } else {
+            logger.log("Отредактирован пассажирский самолет");
             this.plane.setModel(model);
             this.plane.setManufacturer(manufacturer);
             this.plane.setCrew(crew);
@@ -53,6 +58,7 @@ public class PassengerPlaneController extends BasePlaneController {
             this.controller.prepareListView();
             this.controller.recalculateStats();
         }
+        logger.log("Закрыто окно пассажирского самолета");
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
     }

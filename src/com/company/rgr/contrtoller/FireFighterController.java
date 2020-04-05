@@ -3,6 +3,7 @@ package com.company.rgr.contrtoller;
 import com.company.rgr.model.CargoPlane;
 import com.company.rgr.model.FireFighterPlane;
 import com.company.rgr.model.PassengerPlane;
+import com.company.rgr.utils.Logger;
 import com.company.rgr.utils.PlaneTypes;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class FireFighterController extends BasePlaneController {
+
+    Logger logger = Logger.getLogger(this.getClass());
 
     @FXML
     TextField water;
@@ -42,8 +45,10 @@ public class FireFighterController extends BasePlaneController {
         double water1 = Double.parseDouble(this.water.getText());
 
         if (plane == null) {
+            logger.log("Сохранен новый пожарный самолет");
             this.controller.save(new FireFighterPlane(model, manufacturer, range, crew, water1));
         } else {
+            logger.log("Отредактирован пожарный самолет");
             this.plane.setModel(model);
             this.plane.setManufacturer(manufacturer);
             this.plane.setCrew(crew);
@@ -52,6 +57,7 @@ public class FireFighterController extends BasePlaneController {
             this.controller.prepareListView();
             this.controller.recalculateStats();
         }
+        logger.log("Закрыто окно пожарного самолета");
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
 
