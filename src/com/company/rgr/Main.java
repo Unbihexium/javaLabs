@@ -1,6 +1,5 @@
 package com.company.rgr;
 
-import com.company.rgr.contrtoller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -5,7 +5,7 @@
 
 <AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.company.rgr.contrtoller.FireFighterController">
+            fx:controller="com.company.rgr.controller.FireFighterController">
     <children>
         <TextField fx:id="model" layoutX="130.0" layoutY="20.0"/>
         <TextField fx:id="manufacturer" layoutX="130.0" layoutY="60.0"/>

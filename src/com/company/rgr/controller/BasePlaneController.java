@@ -1,4 +1,4 @@
-package com.company.rgr.contrtoller;
+package com.company.rgr.controller;
 
 import javafx.fxml.FXML;
 

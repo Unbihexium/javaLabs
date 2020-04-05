@@ -1,24 +1,20 @@
-package com.company.rgr.contrtoller;
+package com.company.rgr.controller;
 
 import com.company.rgr.model.CargoPlane;
-import com.company.rgr.model.FireFighterPlane;
-import com.company.rgr.model.PassengerPlane;
 import com.company.rgr.utils.Logger;
-import com.company.rgr.utils.PlaneTypes;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class FireFighterController extends BasePlaneController {
+public class CargoPlaneController extends BasePlaneController {
 
     Logger logger = Logger.getLogger(this.getClass());
 
     @FXML
-    TextField water;
+    TextField carryingCapacity;
 
-    FireFighterPlane plane;
+    CargoPlane plane;
 
     @FXML
     public void initialize() {
@@ -31,7 +27,7 @@ public class FireFighterController extends BasePlaneController {
             this.manufacturer.setText(this.plane.getManufacturer());
             this.crew.setText(Integer.toString(this.plane.getCrew()));
             this.range.setText(Double.toString(this.plane.getRangeOfFlight()));
-            this.water.setText(Double.toString(this.plane.getWaterCapacity()));
+            this.carryingCapacity.setText(Double.toString(this.plane.getCarryingCapacity()));
         }
     }
 
@@ -42,33 +38,33 @@ public class FireFighterController extends BasePlaneController {
             String manufacturer = this.manufacturer.getText();
             double range = Double.parseDouble(this.range.getText());
             int crew = Integer.parseInt(this.crew.getText());
-            double water = Double.parseDouble(this.water.getText());
+            double carryingCapacity = Double.parseDouble(this.carryingCapacity.getText());
 
             if (this.model.getText().isEmpty() ||
                     this.manufacturer.getText().isEmpty() ||
                     this.range.getText().isEmpty() ||
                     this.crew.getText().isEmpty() ||
-                    this.water.getText().isEmpty())
+                    this.carryingCapacity.getText().isEmpty())
                 throw new Exception("Некоторые поля пусты");
 
-            if (crew < 0 || water < 0 || range < 0)
+            if (crew < 0 || carryingCapacity < 0 || range < 0)
                 throw new IllegalArgumentException("Поля не могут быть отрицательными");
 
             if (plane == null) {
-                logger.log("Сохранен новый пожарный самолет");
-                this.controller.save(new CargoPlane(model, manufacturer, range, crew, water));
+                logger.log("Сохранен новый грузовой самолет");
+                this.controller.save(new CargoPlane(model, manufacturer, range, crew, carryingCapacity));
             } else {
-                logger.log("Отредактирован пожарный самолет");
+                logger.log("Отредактирован грузовой самолет");
                 this.plane.setModel(model);
                 this.plane.setManufacturer(manufacturer);
                 this.plane.setCrew(crew);
                 this.plane.setRangeOfFlight(range);
-                this.plane.setWaterCapacity(water);
+                this.plane.setCarryingCapacity(carryingCapacity);
                 this.controller.prepareListView();
                 this.controller.recalculateStats();
             }
 
-            logger.log("Закрыто окно пожарного самолета");
+            logger.log("Закрыто окно грузового самолета");
             Stage stage = (Stage) btn.getScene().getWindow();
             stage.close();
         } catch (NumberFormatException e) {

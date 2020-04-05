@@ -1,6 +1,5 @@
-package com.company.rgr.contrtoller;
+package com.company.rgr.controller;
 
-import com.company.rgr.model.CargoPlane;
 import com.company.rgr.model.PassengerPlane;
 import com.company.rgr.utils.Logger;
 import javafx.fxml.FXML;
@@ -8,14 +7,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CargoPlaneController extends BasePlaneController {
+public class PassengerPlaneController extends BasePlaneController {
 
     Logger logger = Logger.getLogger(this.getClass());
 
     @FXML
-    TextField carryingCapacity;
+    TextField carryingCapacity, passengers;
 
-    CargoPlane plane;
+    PassengerPlane plane;
 
     @FXML
     public void initialize() {
@@ -29,6 +28,8 @@ public class CargoPlaneController extends BasePlaneController {
             this.crew.setText(Integer.toString(this.plane.getCrew()));
             this.range.setText(Double.toString(this.plane.getRangeOfFlight()));
             this.carryingCapacity.setText(Double.toString(this.plane.getCarryingCapacity()));
+            this.passengers.setText(Integer.toString(this.plane.getPassengers()));
+
         }
     }
 
@@ -40,32 +41,35 @@ public class CargoPlaneController extends BasePlaneController {
             double range = Double.parseDouble(this.range.getText());
             int crew = Integer.parseInt(this.crew.getText());
             double carryingCapacity = Double.parseDouble(this.carryingCapacity.getText());
+            int passengers = Integer.parseInt(this.passengers.getText());
 
             if (this.model.getText().isEmpty() ||
                     this.manufacturer.getText().isEmpty() ||
                     this.range.getText().isEmpty() ||
                     this.crew.getText().isEmpty() ||
-                    this.carryingCapacity.getText().isEmpty())
+                    this.carryingCapacity.getText().isEmpty() ||
+                    this.passengers.getText().isEmpty())
                 throw new Exception("Некоторые поля пусты");
 
-            if (crew < 0 || carryingCapacity < 0 || range < 0)
+            if (passengers < 0 || crew < 0 || carryingCapacity < 0 || range < 0)
                 throw new IllegalArgumentException("Поля не могут быть отрицательными");
 
             if (plane == null) {
-                logger.log("Сохранен новый грузовой самолет");
-                this.controller.save(new CargoPlane(model, manufacturer, range, crew, carryingCapacity));
+                logger.log("Сохранен новый пассажирский самолет");
+                this.controller.save(new PassengerPlane(model, manufacturer, range, crew, carryingCapacity, passengers));
             } else {
-                logger.log("Отредактирован грузовой самолет");
+                logger.log("Отредактирован пассажирский самолет");
                 this.plane.setModel(model);
                 this.plane.setManufacturer(manufacturer);
                 this.plane.setCrew(crew);
                 this.plane.setRangeOfFlight(range);
                 this.plane.setCarryingCapacity(carryingCapacity);
+                this.plane.setPassengers(passengers);
                 this.controller.prepareListView();
                 this.controller.recalculateStats();
             }
 
-            logger.log("Закрыто окно грузового самолета");
+            logger.log("Закрыто окно пассажирский самолета");
             Stage stage = (Stage) btn.getScene().getWindow();
             stage.close();
         } catch (NumberFormatException e) {

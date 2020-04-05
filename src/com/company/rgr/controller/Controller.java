@@ -1,4 +1,4 @@
-package com.company.rgr.contrtoller;
+package com.company.rgr.controller;
 
 import com.company.rgr.model.AbstractPlane;
 import com.company.rgr.model.CargoPlane;
