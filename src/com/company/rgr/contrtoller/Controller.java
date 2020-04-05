@@ -6,6 +6,7 @@ import com.company.rgr.model.FireFighterPlane;
 import com.company.rgr.model.PassengerPlane;
 import com.company.rgr.utils.Logger;
 import com.company.rgr.utils.PlaneTypes;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -425,15 +426,40 @@ public class Controller {
         File contents = fileChooser.showOpenDialog(this.planesListView.getScene().getWindow());
         System.out.println(contents);
         try {
-            var planes = loadFromFile(contents);
-            if (planes != null) {
-                this.planes = planes;
-            }
+            ArrayList<AbstractPlane> planes;
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        var buf = loadFromFile(contents);
+
+                        Runnable updater = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                getResultFromBackground(buf);
+                                prepareListView();
+                                recalculateStats();
+                            }
+                        };
+                        Platform.runLater(updater);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
         } catch (Exception e){
             e.printStackTrace();
         }
         prepareListView();
         recalculateStats();
+    }
+
+    public void getResultFromBackground(ArrayList<AbstractPlane> planes){
+        if (planes != null)
+            this.planes = planes;
     }
 
     public ArrayList<AbstractPlane> loadFromFile(File file) throws IOException {
