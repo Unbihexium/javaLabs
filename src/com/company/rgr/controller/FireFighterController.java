@@ -53,7 +53,7 @@ public class FireFighterController extends BasePlaneController {
 
             if (plane == null) {
                 logger.log("Сохранен новый пожарный самолет");
-                this.controller.save(new CargoPlane(model, manufacturer, range, crew, water));
+                this.controller.save(new FireFighterPlane(model, manufacturer, range, crew, water));
             } else {
                 logger.log("Отредактирован пожарный самолет");
                 this.plane.setModel(model);
