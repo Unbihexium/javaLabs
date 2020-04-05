@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        // Total hours wasted here: 13
+        // Total hours wasted here: 14
 
         FXMLLoader loader = new FXMLLoader();
 
