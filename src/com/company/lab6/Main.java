@@ -1,24 +1,11 @@
 package com.company.lab6;
 
-import java.util.Scanner;
-
 public class Main {
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
+	double k = 10.0;
+	double[] arr = {1.0, 2.0, 3.0, 4.0};
+	Pair1 pair = new Pair1(arr,k);
+	System.out.println("Ответ: " + pair.findLog());
     }
-
-}
-
-class Log<T> {
-    T a;
-    T b;
-    T c;
-
-    public Log(T a, T b, T c){
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
-
 }
