@@ -18,7 +18,7 @@ public class DomesticFilm implements FilmInteface{
     }
 
     @Override
-    public double getLenght() {
+    public double getLength() {
         return length;
     }
 }

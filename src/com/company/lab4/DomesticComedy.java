@@ -12,7 +12,7 @@ public class DomesticComedy extends DomesticFilm {
     }
 
     @Override
-    public double getLenght() {
-        return super.getLenght();
+    public double getLength() {
+        return super.getLength();
     }
 }

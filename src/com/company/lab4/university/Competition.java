@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class Competition implements Event {
 
+    //Определите  класс  Сompetition,  реализующий  интерфейс  Event.
+    //Содержит   приватные   поля   – дата   и   название   города,   а   так   же   название   проекта   и  
+    //выигранная  сумма
+    //Реализовать  методы  доступа  (геттеры  и  сеттеры)  для  приватных  полей.
+
     private Date date;
     private String city;
 

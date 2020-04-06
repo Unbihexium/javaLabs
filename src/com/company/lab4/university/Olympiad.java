@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class Olympiad implements Event {
 
+    //Определите  класс  Olympiad,  реализующий  интерфейс  Event.
+    //Содержит  приватные  поля  – дата  и  название   города,  а  так  же  место  (целое  число),  
+    //которое  занял  студент  на  олимпиаде.
+    //Реализовать  методы  доступа  (геттеры  и  сеттеры)  для  приватных  полей.
+
     private Date date;
     private String city;
 
