@@ -7,7 +7,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Main {
 
     public static void main(String[] args) {
+        // Умножить каждое четное число на первое отрицательное
         task1();
+
+        // В трех магазинах продают некоторые виды товаров из имеющегося списка
+        // Определить какими товарами торгуют в каждом магазине; какие товары продают
+        // только в одном магазине; какие товары есть хотя бы в двух магазинах
         task2();
     }
 
@@ -107,6 +112,7 @@ public class Main {
         // Add to shop
         shop1.addProduct(product1);
         shop1.addProduct(product2);
+        shop1.addProduct(product3);
 
         // Add to shop 2
         shop2.addProduct(product1);
@@ -125,12 +131,16 @@ public class Main {
                 if (shops[j].contains(products[i]))
                     ++count;
             }
+
             if (count == 3)
                 System.out.println("Продукт \"" + products[i].getName() + "\" содержится во всех магазинах");
-            if (count == 0)
-                System.out.println("Продукт \"" + products[i].getName() + "\" не содержится ни в одном магазине");
-            if (count != 3 && count != 0)
-                System.out.println("Продукт \"" + products[i].getName() + "\" содержится в нескольких магазинах");
+            // Ниже должно быть условие count >= 2, так как по заданию надо отобразить товар,
+            // который есть "хотя бы в двух магазинах", то есть либо в двух, либо во всех.
+            // Но смысла еще раз показывать товар, который есть во всех магазинах нет.
+            if (count == 2)
+                System.out.println("Продукт \"" + products[i].getName() + "\" содержится в двух магазинах");
+            if (count == 1)
+                System.out.println("Продукт \"" + products[i].getName() + "\" содержится в одном магазине");
 
         }
     }
