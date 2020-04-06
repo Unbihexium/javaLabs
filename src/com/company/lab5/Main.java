@@ -16,10 +16,10 @@ public class Main {
         try {
             if (x == 0 || x == 2 || x == -2)
                 throw new ArithmeticException("/ by zero");
-            double denum = 2 + (1 + x + x * x) / (2 * x + x * x) - (1 - x + x * x) / (2 * x - x * x);
-            if (denum == 0)
+            double denom = 2 + (1 + x + x * x) / (2 * x + x * x) - (1 - x + x * x) / (2 * x - x * x);
+            if (denom == 0)
                 throw new ArithmeticException("/ by zero");
-            double z1 = 1 / denum * (5 - 2 * x * x);
+            double z1 = 1 / denom * (5 - 2 * x * x);
             System.out.println("Result z1:" + z1);
             double z2 = (4 - x * x) / 2;
             System.out.println("Result z2:" + z2);
@@ -34,6 +34,7 @@ public class Main {
 
     }
 
+    // Функция выполянет деление комплексных чисел А и В.
     class ComplexNumber {
         // x + iy
         public double x;
